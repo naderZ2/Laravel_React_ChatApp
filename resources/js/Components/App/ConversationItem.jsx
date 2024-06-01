@@ -48,13 +48,23 @@ const ConversationItem =({
                     {conversation.name}
                 </h3>
                 {conversation.last_message_data && (
-                    
+                    <span className="text-nowrap">
+                        {conversation.last_message_data}
+                    </span>
                 )}
 
             </div>
 
+            {conversation.last_message && (
+                    <p className="text-xs text-nowrap overflow-hidden text-ellipsis">
+                        {conversation.last_message}
+                    </p>
+                )}
+
         </div>
-        
+        {currentUser.is_admin && conversation.is_user && (
+            <UserOptionsDropdown conversation={conversation}/>
+        )}
         </Link>
     );
 };
