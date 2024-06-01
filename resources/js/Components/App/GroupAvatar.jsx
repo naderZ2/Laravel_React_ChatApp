@@ -1,4 +1,4 @@
-import { UsersIcon } from "@heroicons/react/24/soled";
+import { UsersIcon } from "@heroicons/react/24/solid";
 
 
 const GroupAvatar = ({ group , sizeClass = "w-8" }) => {

@@ -1,11 +1,47 @@
 import { Menu, Transition } from "@headlessui/react";
-import { EllipsisHorizontalIcon, LockOpenIcon, UserIcon } from "@heroicons/react/24/solid";
 import { Fragment } from "react";
+import { 
+    EllipsisVerticalIcon,
+    LockOpenIcon, 
+    LockClosedIcon, 
+    ShieldCheckIcon, 
+    UserIcon 
+} from "@heroicons/react/24/solid";
+import axios from "axios";
 
 
 
 
 export default function UserOptionsDropdown({ conversation }){
+
+    const changeUserRole = () =>{
+        console.log("Chane user role");
+        if(!conversation.is_user){
+            return
+        }
+        axios.post(route("user.changeRole",conversation.id))
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch((err) =>{
+            console.error(err);
+        });
+    };
+
+    const onBlockUser = () => {
+        console.log("Block user");
+        if(!conversation.is_user){
+            return
+        }
+        axios.post(route("user.blockUnblock", conversation.id))
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch((err) =>{
+            console.error(err);
+        });
+    };
+
 
 
 
@@ -15,7 +51,7 @@ return (
         <Menu as="div" className="relative inline-block text-left" >
             <div>
                 <Menu.Button className="flex justify-center items-center w-8 h-8 rounded-full hover:bg-black/40 " >
-                    <EllipsisHorizontalIcon className="w-5 h-5" />
+                    <EllipsisVerticalIcon className="w-5 h-5" />
                     </Menu.Button>
             </div>
             <Transition 
@@ -72,24 +108,20 @@ return (
                             >
                                 {conversation.is_admin && (
                                     <>
-                                        <UserIcon
+                                        <UserIcon className="w-4 h-4 mr-2"/>
+                                        Make Regular User
                                     </>
                                 )}
-
-
-
-                            <TrashIcon className="w-4 h-4 mr-2"/>
-                            Clear Chat
+                                {!conversation.is_admin && (
+                                    <>
+                                        <ShieldCheckIcon className="w-4 h-4 mr-2"/>
+                                        Make Admin
+                                    </>
+                                )}
                             </button>
                             )}
-
                         </Menu.Item>
-            
-
                     </div>
-
-
-                    
                 </Menu.Items>
             </Transition>
         </Menu>

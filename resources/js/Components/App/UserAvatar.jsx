@@ -16,8 +16,8 @@ const UserAvatar =({ user ,online = null ,profile = false}) =>{
                     </div>
                 )}
                 {!user.avatar_url && (
-                    <div className={`chat-image avatar ${onlineClass}`}>
-                        <div className={`bg-gray-400 text-gray-800 rounded-full ${sizeClass} `}>
+                    <div className={`chat-image avatar placeholder ${onlineClass}`}>
+                        <div className={`bg-gray-400 text-gray-800 items-center rounded-full ${sizeClass} `}>
                             <span className="text-xl">
                             {user.name.substring(0, 1).toUpperCase()}
                             </span>

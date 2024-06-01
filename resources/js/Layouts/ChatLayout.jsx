@@ -1,7 +1,8 @@
 import TextInput  from "@/Components/TextInput";
 import { usePage } from "@inertiajs/react";
 import { useState , useEffect } from "react";
-import { PencilSquareIcon } from '@heroicons/react/24/outline'
+import { PencilSquareIcon } from '@heroicons/react/24/solid'
+import ConversationItem from "@/Components/App/ConversationItem";
 
 
 const ChatLayout = ({ children}) => {
@@ -121,7 +122,7 @@ const ChatLayout = ({ children}) => {
                 </div>
                 <div className="flex-1 ocerflow-auto">
                     {sortedConversations && sortedConversations.map((conversation) =>   (
-                        <ConversationItem 
+                        <ConversationItem
                         key={`${
                             conversation.is_group ? "group_" : "user_"
                         }${conversation.id}`} 
